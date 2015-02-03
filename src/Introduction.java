@@ -6,12 +6,11 @@ public class Introduction
 	private static int hp, maxhp, level, exp, nextLevel, attack, defense,
 			potions, gold, floor, weapon, armor;
 	private static int monhp, monmaxhp, monAttack, monDefense;
-	private static GameState state;
+	protected static GameState state;
 
 	public static void main(String[] args)
 		{
 		Introduction1();
-		printStats();
 		}
 
 	public enum GameState
@@ -27,7 +26,7 @@ public class Introduction
 		System.out.println("Welcome to Sword Art Online" + " " + name + ".");
 		name = input.nextLine();
 		hp = 10;
-		maxhp = 10;
+		maxhp = 5;
 		level = 1;
 		nextLevel = 15;
 		exp = 1;
@@ -35,12 +34,21 @@ public class Introduction
 		defense = 3;
 		potions = 0;
 		gold = 110;
-		floor = 0;
 		weapon = 1;
 		armor = 1;
+		printStats();
 		state = GameState.TOWN;
+		
+		switch (state)
+	      {
+	         case TOWN:
+	            Rooms.town(null, armor, armor);
+	            break;
+	              
+	      } 
+	   } 
 
-		}
+		
 
 	static void printStats()
 		{
