@@ -7,13 +7,13 @@ public class Movement
 		{
 		MovementSpace();
 		}
-	
+
 	public static void MovementSpace()
 		{
 
 		// Build rooms
 		final int WIDTH = 3;
-		final int HEIGHT = 3;
+		final int HEIGHT = 2;
 		final int LENGTH = 2;
 		Room[][][] room = new Room[WIDTH][HEIGHT][LENGTH];
 		Rooms.build(room, WIDTH, HEIGHT, LENGTH);
@@ -73,18 +73,27 @@ public class Movement
 					{
 					System.out.println("You can't go that way.");
 					}
+				} else if (input.equals("inside"))
+				{
+				if (z > 0)
+					{
+					z++;
+					Rooms.print(room, x, y, z);
+					} else
+					{
+					System.out.println("You can't go that way.");
+					}
+				} else if (input.equals("outside"))
+				{
+				if (z < LENGTH - 1)
+					{
+					z++;
+					Rooms.print(room, x, y, z);
+					} else
+					{
+					System.out.println("You can't go that way.");
+					}
 				}
-				 else if (input.equals("down"))
-						{
-						if (z > 0)
-							{
-							z++;
-							Rooms.print(room, x, y, z);
-							} else
-							{
-							System.out.println("You can't go that way.");
-							}
-						}
 
 			// Look commands
 			else if (input.equals("look"))
