@@ -7,7 +7,7 @@ public class Introduction
 	public static void main(String[] args)
 		{
 		Introduction1();
-		Movement.MovementSpace();
+		Rooms.createMap();
 		}
 
 	static void Introduction1()
@@ -18,6 +18,8 @@ public class Introduction
 		System.out
 				.println("Welcome to the world of Hyrule, you have just woken up from a deep sleep."
 						+ " " + name + ".");
+		
+
 
 		}
 	}
