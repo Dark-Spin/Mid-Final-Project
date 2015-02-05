@@ -33,7 +33,7 @@ public class Movement
 			String input = Input.getInput();
 
 			// Movement commands
-			if (input.equals("up"))
+			if (input.equals("down"))
 				{
 				if (y > 0)
 					{
@@ -43,7 +43,7 @@ public class Movement
 					{
 					System.out.println("You can't go that way.");
 					}
-				} else if (input.equals("down"))
+				} else if (input.equals("up"))
 				{
 				if (y < HEIGHT - 1)
 					{
@@ -53,7 +53,7 @@ public class Movement
 					{
 					System.out.println("You can't go that way.");
 					}
-				} else if (input.equals("right"))
+				} else if (input.equals("left"))
 				{
 				if (x > 0)
 					{
@@ -63,7 +63,7 @@ public class Movement
 					{
 					System.out.println("You can't go that way.");
 					}
-				} else if (input.equals("left"))
+				} else if (input.equals("right"))
 				{
 				if (x < WIDTH - 1)
 					{
