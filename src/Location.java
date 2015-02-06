@@ -5,7 +5,7 @@ public class Location
 	private String description;
 	private String title;
 	private Vector<Exit> exits;
-	Monster	lair;
+	Ganondorf	lair;
 
 	public Location (String t, String d)
 		{

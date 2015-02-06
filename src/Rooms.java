@@ -11,7 +11,9 @@ public class Rooms extends Introduction
 	public static void main(String[] args)
 		{
 		createMap();
+		populateMonsters();
 		hero = Player.generateHero();
+		
 
 		while (true)
 			{
@@ -24,11 +26,29 @@ public class Rooms extends Introduction
 				System.out.println("You also see a "
 						+ currentLocation.getLair().getNameOfMonster());
 				resolveCombat(hero, currentLocation.getLair());
-				
-					}
+
 				}
 			}
-		
+		}
+
+	public static void populateMonsters()
+		{
+		for (Location location : map)
+			{
+
+			int randomNumber = 1;
+			switch ((int) ((randomNumber * 10) + 1))
+				{
+				case 1:
+					location.lair = new Ganondorf();
+					break;
+//				case 2:
+//					location.lair = new SpecificMonster2();
+//					break;
+				}
+			}
+
+		}
 
 	public static void createMap()
 		{
