@@ -17,7 +17,8 @@ public class Introduction
 		name = input.nextLine();
 		System.out
 				.println("Welcome to the world of Hyrule, you have just woken up from a deep sleep."
-						+ " " + name + ".");
+						+ " " + name + ". Please enter anything to continue.");
+		String input1 = Input.getInput();
 		
 
 
