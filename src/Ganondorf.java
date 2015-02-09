@@ -1,11 +1,11 @@
 
-public class Ganondorf
+public class Ganondorf extends Monster
 	{
-
-	public String getNameOfMonster()
-		{
-		// TODO Auto-generated method stub
-		return null;
-		}
+		public Ganondorf()
+			{
+			setNameOfMonster("Ganondorf");
+			myAttackBehavior = (AttackBehavior) new AttackWithSword();
+			setHitPointsOfMonster(50);
+			}
 
 	}

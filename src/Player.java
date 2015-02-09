@@ -18,8 +18,7 @@ public class Player
 		switch (heroClass)
 			{
 			case 1:
-				int randomD10Roll = (int) ((Math.random() * 9) + 1);
-				hero.setHitPointsOfHero(randomD10Roll);
+				hero.setHitPointsOfHero(10);
 				hero.setAttackBehavior(new AttackWithSword());
 				break;
 			case 2:

@@ -13,47 +13,61 @@ public class Rooms extends Introduction
 		createMap();
 		populateMonsters();
 		hero = Player.generateHero();
-		
 
 		while (true)
 			{
 			System.out.println("You're in " + currentLocation.getTitle());
 			System.out.println(currentLocation.getDescription());
 			System.out.println();
+			
+
 
 			if (currentLocation.getLair() != null)
 				{
 				System.out.println("You also see a "
 						+ currentLocation.getLair().getNameOfMonster());
 				resolveCombat(hero, currentLocation.getLair());
+				}
 
+			System.out.println();
+			System.out.println("Which direction would you like to go?");
+
+			for (Exit exit : currentLocation.getExits())
+				{
+				System.out.println(exit.getDirection());
+				}
+
+			Scanner scanner = new Scanner(System.in);
+			String choice = scanner.nextLine();
+
+			for (Exit exit : currentLocation.getExits())
+				{
+				if (exit.getDirection().equals(choice))
+					{
+					currentLocation = exit.getLeadsTo();
+					}
 				}
 			}
 		}
 
 	public static void populateMonsters()
 		{
-		for (Location location : map)
+		for (Location nextRoom : get(map.size()))
 			{
 
-			int randomNumber = 1;
-			switch ((int) ((randomNumber * 10) + 1))
-				{
-				case 1:
-					location.lair = new Ganondorf();
-					break;
-//				case 2:
-//					location.lair = new SpecificMonster2();
-//					break;
+					nextRoom.lair = new Ganondorf();
+				// case 2:
+				// location.lair = new SpecificMonster2();
+				// break;
 				}
 			}
 
-		}
+		
 
 	public static void createMap()
 		{
 
-		map = new Vector<Location>(4);
+		map = new Vector<Location>(6);
 
 		Location location1 = new Location("your house.",
 				"You see doors to the north and east.");
@@ -63,14 +77,17 @@ public class Rooms extends Introduction
 				"You see doors to the south and east.");
 		Location location4 = new Location("Temple of Time",
 				"You see doors to the south and west.");
-		Location location5 = new Location(".",
-				"You see doors to the north and west.");
+		Location location5 = new Location("Sacred Grove.",
+				"You see doors to the south.");
+		Location location6 = new Location("Deep Woods.",
+				"You see doors to the west.");
 
 		map.addElement(location1);
 		map.addElement(location2);
 		map.addElement(location3);
 		map.addElement(location4);
 		map.addElement(location5);
+		map.addElement(location6);
 
 		// This section defines the exits found in each location and the
 		// locations to which they lead.
@@ -82,44 +99,13 @@ public class Rooms extends Introduction
 		location3.addExit(new Exit(Exit.east, location4));
 		location4.addExit(new Exit(Exit.west, location3));
 		location4.addExit(new Exit(Exit.south, location2));
-		location5.addExit(new Exit(Exit.west, location4));
-		location5.addExit(new Exit(Exit.north, location3));
+		location4.addExit(new Exit(Exit.north, location5));
+		location5.addExit(new Exit(Exit.south, location4));
+		location5.addExit(new Exit(Exit.east, location6));
+		location6.addExit(new Exit(Exit.west, location5));
 
 		currentLocation = location1;
 
-			{
-
-			while (true)
-				{
-				System.out.println("You're in " + currentLocation.getTitle());
-				System.out.println(currentLocation.getDescription());
-				System.out.println();
-
-				System.out.println();
-				System.out.println("Which direction would you like to go?");
-
-				if (currentLocation == location2)
-					{
-					System.out.println();
-					}
-
-				for (Exit exit : currentLocation.getExits())
-					{
-					System.out.println(exit.getDirection());
-					}
-
-				Scanner scanner = new Scanner(System.in);
-				String choice = scanner.nextLine();
-
-				for (Exit exit : currentLocation.getExits())
-					{
-					if (exit.getDirection().equals(choice))
-						{
-						currentLocation = exit.getLeadsTo();
-						}
-					}
-				}
-			}
 		}
 
 	public static void resolveCombat(Hero heroCombatant,
