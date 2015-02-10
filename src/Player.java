@@ -13,20 +13,18 @@ public class Player
 
 	public static void initializeHero(Hero hero)
 		{
-		int heroClass =
-			0;
-		switch (heroClass)
-			{
-			case 1:
+		@SuppressWarnings("unused")
+		int heroClass = 0;
 				hero.setHitPointsOfHero(10);
 				hero.setAttackBehavior(new AttackWithSword());
-				break;
-			case 2:
-				int randomD6Roll = (int) ((Math.random() * 5) + 1);
-				hero.setHitPointsOfHero(randomD6Roll);
-				hero.setAttackBehavior(new AttackWithMasterSword());
-				break;
+				
+				if(hero.getHitPointsOfHero() < 5)
+					{
+					hero.setAttackBehavior(new AttackWithMasterSword());
+					}
+
+   
 
 			}
 		}
-	}
+	

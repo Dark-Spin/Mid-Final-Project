@@ -13,7 +13,12 @@ public class GifRunner
 
 public static void main(String[] args) throws MalformedURLException {
 
-        URL url = new URL("http://fc06.deviantart.net/fs71/f/2012/088/e/6/skyward_sword_gif_v2_by_shad0w8-d4ubens.gif");
+      
+    }
+
+public static void main() throws MalformedURLException
+	{
+	  URL url = new URL("http://fc06.deviantart.net/fs71/f/2012/088/e/6/skyward_sword_gif_v2_by_shad0w8-d4ubens.gif");
         
         Icon icon = new ImageIcon(url);
         JLabel label = new JLabel(icon);
@@ -33,5 +38,6 @@ public static void main(String[] args) throws MalformedURLException {
         	{
         	System.exit(0);
         	}
-    }
+	
+	}
 }

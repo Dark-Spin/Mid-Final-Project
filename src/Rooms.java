@@ -1,3 +1,4 @@
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.Scanner;
@@ -7,6 +8,7 @@ public class Rooms extends Introduction
 	static Vector<Location> map;
 	private static Hero hero;
 	static Location currentLocation;
+	static Location bossLocation;
 
 	public static void main(String[] args)
 		{
@@ -24,7 +26,7 @@ public class Rooms extends Introduction
 
 			if (currentLocation.getLair() != null)
 				{
-				System.out.println("You also see a "
+				System.out.println("You also see "
 						+ currentLocation.getLair().getNameOfMonster());
 				resolveCombat(hero, currentLocation.getLair());
 				}
@@ -52,13 +54,10 @@ public class Rooms extends Introduction
 
 	public static void populateMonsters()
 		{
-		for (Location nextRoom : get(map.size()))
+		for (Location nextRoom : map)
 			{
 
 					nextRoom.lair = new Ganondorf();
-				// case 2:
-				// location.lair = new SpecificMonster2();
-				// break;
 				}
 			}
 
@@ -105,11 +104,12 @@ public class Rooms extends Introduction
 		location6.addExit(new Exit(Exit.west, location5));
 
 		currentLocation = location1;
+		bossLocation = location6;
 
 		}
 
 	public static void resolveCombat(Hero heroCombatant,
-			Monster monsterCombatant)
+			Monster monsterCombatant) 
 		{
 		while (monsterCombatant.getHitPointsOfMonster() > 0)
 			{
@@ -119,6 +119,12 @@ public class Rooms extends Introduction
 					.getHitPointsOfMonster() - heroCombatant.performAttack());
 			heroCombatant.setHitPointsOfHero(heroCombatant.getHitPointsOfHero()
 					- monsterCombatant.performAttack());
+			if(hero.getHitPointsOfHero() < 5)
+				{
+				System.out.println("You hold up your sword to the sky transforming it into the Master Sword.");
+				hero.setAttackBehavior(new AttackWithMasterSword());
+				hero.setHitPointsOfHero(50);
+				}
 			System.out.println("The monster now has "
 					+ monsterCombatant.getHitPointsOfMonster() + " HP.");
 			System.out.println("You now have "
@@ -126,12 +132,20 @@ public class Rooms extends Introduction
 
 			if (monsterCombatant.getHitPointsOfMonster() <= 0)
 				{
-				System.out.println("The monster dies.");
+				System.out.println("You have defeated the boss.");
+				try
+					{
+					GifRunner.main();
+					} catch (MalformedURLException e)
+					{
+					
+					e.printStackTrace();
+					}
 				}
 
 			if (heroCombatant.getHitPointsOfHero() <= 0)
 				{
-				System.out.println("You die a failure.");
+				System.out.println("You must not have been the hero of Hyrule.");
 				System.exit(0);
 				}
 
