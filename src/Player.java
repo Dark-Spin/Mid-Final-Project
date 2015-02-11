@@ -15,10 +15,10 @@ public class Player
 		{
 		@SuppressWarnings("unused")
 		int heroClass = 0;
-				hero.setHitPointsOfHero(10);
+				hero.setHitPointsOfHero(20);
 				hero.setAttackBehavior(new AttackWithSword());
 				
-				if(hero.getHitPointsOfHero() < 5)
+				if(hero.getHitPointsOfHero() < 3)
 					{
 					hero.setAttackBehavior(new AttackWithMasterSword());
 					}

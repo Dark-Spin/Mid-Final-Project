@@ -5,21 +5,20 @@ import java.util.Scanner;
 
 public class Rooms extends Introduction
 	{
-	static Vector<Location> map;
+	private static Vector<Location> map;
 	private static Hero hero;
-	static Location currentLocation;
-	static Location bossLocation;
-	static Location location1 = new Location("your house.",
+	private static Location currentLocation;
+	private static Location location1 = new Location("your house. You take the small sword on the table next to you as you get up.",
 			"You see doors to the north and east.");
-	static Location location2 = new Location("Hyrulian Fields.",
+	private static Location location2 = new Location("Hyrulian Fields. The area is wide and open.",
 			"You see doors to the north and west.");
-	static Location location3 = new Location("Faron Woods",
+	private static Location location3 = new Location("Faron Woods. You sense something is amiss.",
 			"You see doors to the south and east.");
-	static Location location4 = new Location("Temple of Time",
+	private static Location location4 = new Location("the Temple of Time. You recognize the place, it is all to familiar.",
 			"You see doors to the south and west.");
-	static Location location5 = new Location("Sacred Grove.",
+	private static Location location5 = new Location("the Sacred Grove.",
 			"You see doors to the south.");
-	static Location location6 = new Location("Deep Woods.",
+	private static Location location6 = new Location("Deep Woods.",
 			"You see doors to the west.");
 
 	public static void main(String[] args)
@@ -36,8 +35,9 @@ public class Rooms extends Introduction
 
 			if (currentLocation.getLair() != null)
 				{
+				currentLocation.getLair();
 				System.out.println("You also see "
-						+ currentLocation.getLair().getNameOfMonster());
+						+ Monster.getNameOfMonster());
 				resolveCombat(hero, currentLocation.getLair());
 				}
 
@@ -95,7 +95,6 @@ public class Rooms extends Introduction
 		location6.addExit(new Exit(Exit.west, location5));
 
 		currentLocation = location1;
-		bossLocation = location6;
 
 		}
 
@@ -104,13 +103,13 @@ public class Rooms extends Introduction
 		{
 		while (monsterCombatant.getHitPointsOfMonster() > 0)
 			{
-			System.out.println("The monster's HP = "
+			System.out.println(Ganondorf.getNameOfMonster() + "'s HP = "
 					+ monsterCombatant.getHitPointsOfMonster());
 			monsterCombatant.setHitPointsOfMonster(monsterCombatant
 					.getHitPointsOfMonster() - heroCombatant.performAttack());
 			heroCombatant.setHitPointsOfHero(heroCombatant.getHitPointsOfHero()
 					- monsterCombatant.performAttack());
-			if (hero.getHitPointsOfHero() < 5)
+			if (hero.getHitPointsOfHero() < 3)
 				{
 				System.out
 						.println("You hold up your sword to the sky transforming it into the Master Sword.");
@@ -124,7 +123,7 @@ public class Rooms extends Introduction
 
 			if (monsterCombatant.getHitPointsOfMonster() <= 0)
 				{
-				System.out.println("You have defeated the boss.");
+				System.out.println("You have defeated the Ganondorf and saved the land of Hyrule.");
 				try
 					{
 					GifRunner.main();

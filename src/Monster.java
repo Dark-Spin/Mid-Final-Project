@@ -1,10 +1,10 @@
 public class Monster
 	{
-	private String nameOfMonster;
+	private static String nameOfMonster;
 	private int hitPointsOfMonster;
 	AttackBehavior myAttackBehavior;
 	
-	public String getNameOfMonster()
+	public static String getNameOfMonster()
 		{
 		return nameOfMonster;
 		}
